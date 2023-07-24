@@ -7,8 +7,8 @@ J.A.T.E (Just Another Text Editor) is a simple and lightweight web-based text ed
 ## Table of Contents
 
 - [Description](#description-)
-- [Installation](#installation-)
 - [Usage](#usage-)
+- [Installation](#installation-)
 - [License](#license-)
 - [Contributing](#contributing-)
 - [Tests](#tests-)
