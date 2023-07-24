@@ -12,6 +12,8 @@ J.A.T.E (Just Another Text Editor) is a simple and lightweight web-based text ed
 - [License](#license-)
 - [Contributing](#contributing-)
 - [Tests](#tests-)
+- [Questions](#questions-)
+- [Media](#media-)
 
 ## Usage
 
@@ -41,3 +43,7 @@ Testing is not yet set up for this application.
 ## Questions
 
 If you have any questions, please contact me at marshall.peters01@gmail.com. You can also find more of my work at [marshallpeters5](https://github.com/marshallpeters5/).
+
+## Heroku
+
+You can find this application deployed live here: 
