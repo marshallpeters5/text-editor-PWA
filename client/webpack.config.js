@@ -29,8 +29,8 @@ module.exports = () => {
         name: "Just Another Text Editor",
         short_name: "J.A.T.E",
         description: "A lightning fast text editor using built-in JavaScript.",
-        background_color: "#333333",
-        theme_color: "#333333",
+        background_color: "#222222",
+        theme_color: "#444444",
         icons: [
           {
             src: path.resolve("src/images/logo.png"),
