@@ -31,6 +31,8 @@ module.exports = () => {
         description: "A lightning fast text editor using built-in JavaScript.",
         background_color: "#222222",
         theme_color: "#444444",
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
             src: path.resolve("src/images/logo.png"),
