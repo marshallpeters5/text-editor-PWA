@@ -1,25 +1,39 @@
+// install.js
 const butInstall = document.getElementById('buttonInstall');
 
-// Logic for installing the PWA //
-window.addEventListener('beforeinstallprompt', (event) => {
-  event.preventDefault();
-  let deferredPrompt = event;
+// Check if service workers are supported
+if ('serviceWorker' in navigator) {
+  // Listen for the "beforeinstallprompt" event
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    let deferredPrompt = event;
 
-  butInstall.style.display = 'block';
-  butInstall.addEventListener('click', async () => {
-    deferredPrompt.prompt();
-    const choiceResult = await deferredPrompt.userChoice;
+    // Show the installation button when the event occurs
+    butInstall.style.display = 'block';
 
-    if (choiceResult.outcome === 'accepted') {
-      console.log('PWA installation accepted by user.');
-    } else {
-      console.log('PWA installation rejected by user.');
-    }
+    // Handle the button click to prompt the user for installation
+    butInstall.addEventListener('click', async () => {
+      // Prompt the user to install the PWA
+      deferredPrompt.prompt();
 
-    deferredPrompt = null;
+      // Wait for the user's choice result
+      const choiceResult = await deferredPrompt.userChoice;
+
+      if (choiceResult.outcome === 'accepted') {
+        console.log('PWA installation accepted by user.');
+      } else {
+        console.log('PWA installation rejected by user.');
+      }
+
+      // Reset the deferredPrompt to null
+      deferredPrompt = null;
+    });
   });
-});
 
-window.addEventListener('appinstalled', (event) => {
-  console.log('PWA was installed on the device.');
-});
+  // Listen for the "appinstalled" event
+  window.addEventListener('appinstalled', (event) => {
+    console.log('PWA was installed on the device.');
+  });
+} else {
+  console.error('Service workers are not supported in this browser.');
+}

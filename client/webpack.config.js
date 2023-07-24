@@ -15,57 +15,49 @@ module.exports = () => {
       path: path.resolve(__dirname, "dist"),
     },
     plugins: [
-      // Plugin to generate the main HTML file //
       new HtmlWebpackPlugin({
-        template: "./src/index.html",
-        chunks: ["main"],
-        title: "J.A.T.E."
+        template: "./index.html",
+        title: "J.A.T.E",
       }),
-
-      // Plugin to generate the installation HTML file //
-      new HtmlWebpackPlugin({
-        template: "./src/install.html",
-        filename: "install.html",
-        chunks: ["install"],
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "src-sw.js",
       }),
-
-      // Plugin to generate the web app manifest file //
       new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
         name: "Just Another Text Editor",
         short_name: "J.A.T.E",
-        description: "Allows quick editing of notes and storing them locally.",
-        background_color: "#ffffff",
-        theme_color: "#000000",
-        start_url: "/",
-        publicPath: "/",
+        description: "A lightning fast text editor using built-in JavaScript.",
+        background_color: "#333333",
+        theme_color: "#333333",
         icons: [
           {
-            src: path.resolve("src/assets/icons/icon_96x96.png"),
+            src: path.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join("assets", "icons"),
           },
         ],
-      }),
-
-      new InjectManifest({
-        swSrc: "./src/sw.js",
-        swDest: "sw.js",
       }),
     ],
 
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.css$/i,
           use: ["style-loader", "css-loader"],
         },
         {
-          test: /\.js$/,
+          test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
-              plugins: ["@babel/plugin-proposal-object-rest-spread", ":@babel/transform-runtime"]
+              plugins: [
+                "@babel/plugin-proposal-object-rest-spread",
+                "@babel/transform-runtime",
+              ],
             },
           },
         },
